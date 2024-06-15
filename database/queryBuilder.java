@@ -5,7 +5,19 @@ public interface queryBuilder {
 
     queryBuilder from(String table);
 
-    queryBuilder where(String... conditions);
+    public queryBuilder where(String logicalOperator, String... condition);
+
+    public queryBuilder where(String condition);
+
+    queryBuilder innerJoin(String table, String onCondition);
+
+    queryBuilder leftJoin(String table, String onCondition);
+
+    queryBuilder orderBy(String... columns);
+
+    queryBuilder orderBy(String order, String column);
+
+    queryBuilder groupBy(String... columns);
 
     public String build();
 }

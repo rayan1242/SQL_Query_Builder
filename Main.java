@@ -6,8 +6,14 @@ public class Main {
         MySqlQueryBuilder sqlQuery=new MySqlQueryBuilder();
         sqlQuery.select("name","age")
         .from("user")
-        .where("age>18","name=ray");
-
+        .where("age>18","name=ray")
+        .innerJoin("userAddress", "userAddress.userId = users.userId")
+        .leftJoin("transaction", "transaction.userId = users.userId")
+        .orderBy("asc", "name")
+        .orderBy("age")
+        .orderBy("desc", "phone")
+        .groupBy("gender")
+        .groupBy("age");
         System.out.println(sqlQuery.build());
     }
 

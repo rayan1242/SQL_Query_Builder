@@ -18,7 +18,7 @@ public class MySqlQueryBuilder implements queryBuilder {
     }
     
     @Override
-    public queryBuilder where(String... condition){
+    public queryBuilder where(String logicalOperator,String... condition){
         WhereManager.whereManager(output,condition);
         return this;
     }
@@ -27,4 +27,38 @@ public class MySqlQueryBuilder implements queryBuilder {
     public String build(){
         return output;
     }
+
+    @Override
+    public queryBuilder where(String condition){
+        return this;
+    }
+    @Override
+    public queryBuilder innerJoin(String table, String condition){
+        InnerJoinManager.innerJoinManager(output, table, condition);
+        return this;
+    }
+
+    @Override
+    public queryBuilder leftJoin(String table,String condition){
+        LeftJoinManager.leftJoinManager(output, table, condition);
+        return this;
+    }
+
+    @Override
+    public queryBuilder orderBy(String... columns){
+        return this;
+    }
+
+    @Override
+    public queryBuilder orderBy(String order, String column){
+        return this;
+    }
+
+    @Override
+    public queryBuilder groupBy(String... columns){
+        return this;
+    }
+
+
+
 }
